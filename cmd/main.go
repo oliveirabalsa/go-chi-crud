@@ -16,5 +16,6 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", postHandler.GetPost)
-	http.ListenAndServe(":8080", r)
+	r.Post("/", postHandler.CreatePost)
+	http.ListenAndServe(":8082", r)
 }
