@@ -3,25 +3,25 @@ package services
 import (
 	"github.com/google/uuid"
 	"github.com/oliveirabalsa/go-simple-crud/internal/entities"
+	"github.com/oliveirabalsa/go-simple-crud/internal/repositories"
 )
 
 type PostService struct {
+	postRepository repositories.PostRepository
 }
 
-func NewPostService() *PostService {
-	return &PostService{}
-}
-
-func (ps *PostService) GetPost() entities.Post {
-	post := entities.Post{
-		Title:       "Lorem impsum",
-		Description: "Lorem ipmsum iamet",
+func NewPostService(postRepository repositories.PostRepository) *PostService {
+	return &PostService{
+		postRepository: postRepository,
 	}
-	return post
+}
+
+func (ps *PostService) GetPost() []entities.Post {
+	return ps.postRepository.GetPosts()
 }
 
 func (ps *PostService) CreatePost(post entities.Post) (entities.Post, error) {
-	// do something
 	post.Id = uuid.New()
-	return post, nil
+	return ps.postRepository.CreatePost(post), nil
+
 }
