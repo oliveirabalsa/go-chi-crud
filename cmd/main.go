@@ -6,11 +6,13 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/oliveirabalsa/go-simple-crud/internal/handlers"
+	"github.com/oliveirabalsa/go-simple-crud/internal/repositories"
 	"github.com/oliveirabalsa/go-simple-crud/internal/services"
 )
 
 func main() {
-	postService := services.NewPostService()
+	postRepository := repositories.NewPostRepository()
+	postService := services.NewPostService(*postRepository)
 	postHandler := handlers.NewPostHandler(*postService)
 
 	r := chi.NewRouter()
