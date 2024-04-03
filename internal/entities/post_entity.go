@@ -7,9 +7,9 @@ import (
 )
 
 type Post struct {
-	Id          uuid.UUID `json:"id"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
+	Id          uuid.UUID `json:"id" gorm:"primaryKey"`
+	Title       string    `json:"title" gorm:"title"`
+	Description string    `json:"description" gorm:"description"`
 }
 
 func (p *Post) ToJson() []byte {
