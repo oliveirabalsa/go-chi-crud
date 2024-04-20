@@ -28,6 +28,8 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", postHandler.GetPost)
+	r.Get("/{id}", postHandler.GetPostById)
 	r.Post("/", postHandler.CreatePost)
+	r.Patch("/{id}", postHandler.UpdatePost)
 	http.ListenAndServe(":8082", r)
 }
