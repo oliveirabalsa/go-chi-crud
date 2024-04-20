@@ -9,8 +9,6 @@ type PostRepository struct {
 	DB *gorm.DB
 }
 
-var posts []entities.Post
-
 func NewPostRepository(db *gorm.DB) *PostRepository {
 	return &PostRepository{
 		DB: db,
