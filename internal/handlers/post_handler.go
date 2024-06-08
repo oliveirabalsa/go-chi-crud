@@ -12,7 +12,6 @@ import (
 
 type PostHandler struct {
 	postService services.PostService
-	// params that will mount the handler, nothing for now
 }
 
 func NewPostHandler(postService services.PostService) *PostHandler {
